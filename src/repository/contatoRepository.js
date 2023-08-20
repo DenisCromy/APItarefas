@@ -1,25 +1,15 @@
-import conexao from "./connection";
+import { conexao } from './connection.js';
 
-export async function inserirTarefa(){
-    let sql = 'select * from tb_tarefa';
+export async function inserirTarefa(tarefa, ordem, finalizado, cadastro){
+    const comando = `
+                INSERT INTO tb_tarefa (ds_tarefa, nr_ordem, bt_finalizado, ds_cadastro) 
+                    VALUES (?, ?, ?, ?);
 
-    let resp = await conexao.query(sql);
-    let dados = resp(0);
+    `
 
-    return dados;
-}
+    const resp = await conexao.query(comando, [tarefa, ordem, finalizado, cadastro]);
+    
 
-export async function inserir(tarefa){
-    let comando = `
-    INSERT INTO tb_tarefa (ds_tarefa, nr_ordem, bt_finalizado, ds_cadastro) 
-                  VALUES (?, ?, ?, ?, ?, ?);
-  `
-
-  let resp = await conexao.query(comando, [nome, chamada, turma, ano, genero, nascimento]);
-  let info = resp[0];
-  return info;
-
+    return resp;
 
 }
-
-return inserirTarefa;
