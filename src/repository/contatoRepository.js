@@ -13,3 +13,16 @@ export async function inserirTarefa(tarefa, ordem, finalizado, cadastro){
     return resp;
 
 }
+
+
+export async function BuscarTarefas(){
+    const comando = `
+                select * from tb_tarefa
+
+    `
+
+    const [linhas] = await conexao.query(comando);
+    return linhas;
+    
+
+}
