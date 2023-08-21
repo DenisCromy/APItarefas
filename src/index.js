@@ -23,7 +23,7 @@ server.listen(process.env.PORT,
 
 
     server.get('/ping', (req, resp) =>{
-        resp.send('pomba')
+        resp.send('pong')
     })
     
 

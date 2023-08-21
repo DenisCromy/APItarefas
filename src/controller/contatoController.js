@@ -1,8 +1,25 @@
-import { inserirTarefa, BuscarTarefas } from "../repository/contatoRepository.js";
+import { inserirTarefa, BuscarTarefas, BuscarFinalizadas } from "../repository/contatoRepository.js";
 
 import { Router } from "express";
 
 const server = Router();
+
+
+server.get("/tarefa/finalizadas", async (req, resp) =>{
+    try {
+        const respostafill = await BuscarFinalizadas();
+        resp.send(respostafill);
+    }
+
+    catch (err) {
+        resp.status(400).send({
+            erro: 'ERRO AQUI'
+        })
+    
+    }
+
+
+})
 
 
 server.get("/tarefa", async (req, resp) =>{

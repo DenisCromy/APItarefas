@@ -26,3 +26,19 @@ export async function BuscarTarefas(){
     
 
 }
+
+
+export async function BuscarFinalizadas(){
+
+    const comandofiltro = `
+            select * from tb_tarefa
+            where bt_finalizado = true
+    
+
+    `
+
+    const [linfiltro] = await conexao.query(comandofiltro);
+    return linfiltro
+
+
+}
