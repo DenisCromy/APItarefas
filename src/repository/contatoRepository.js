@@ -42,3 +42,37 @@ export async function BuscarFinalizadas(){
 
 
 }
+
+
+export async function alterarTarefas(id, tarefa){
+
+    const comando = `
+        UPDATE tb_tarefa
+        set     ds_tarefa = ?,
+                nr_ordem = ?,
+                bt_finalizado = ?,
+                ds_cadastro = ?
+        WHERE id_tarefa = ?    
+
+    
+    `
+
+    const [alterar] = await conexao.query(comando, [tarefa.tarefa, tarefa.ordem, tarefa.finalizado, tarefa.cadastro, id])
+    return alterar.affectedRows
+
+}
+
+
+export async function excluirTarefa(id){
+        const comando = `
+                DELETE FROM tb_tarefa
+                    WHERE   id_tarefa = ?
+
+        
+        `;
+
+        const [resposta] = await conexao.query(comando, [id]);
+        return resposta.affectedRows;
+
+
+}
